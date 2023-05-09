@@ -11,7 +11,16 @@ const MealsOverViewScreen = ({ route }) => {
   });
 
   const renderMealItem = (itemData) => {
-    return <MealItem title={itemData.item.title} imageUrl={itemData.item.imageUrl} Duration={itemData.item.duration} Complexity={itemData.item.complexity} affordability={itemData.item.affordability} />;
+    
+    return (
+      <MealItem
+        title={itemData.item.title}
+        imageUrl={itemData.item.imageUrl}
+        Duration={itemData.item.duration}
+        Complexity={itemData.item.complexity}
+        affordability={itemData.item.affordability}
+      />
+    );
   };
 
   return (
