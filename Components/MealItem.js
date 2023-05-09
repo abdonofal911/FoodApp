@@ -1,14 +1,12 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import React from "react";
+import { Text, View } from "react-native";
 
-const MealItem = ({title}) => {
+const MealItem = ({ title }) => {
   return (
     <View>
-      <Text>
-      {title}
-      </Text>
+      <Text>{title}</Text>
     </View>
-  )
-}
+  );
+};
 
-export default MealItem
+export default MealItem;
