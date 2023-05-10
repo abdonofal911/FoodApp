@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Image,
   Platform,
@@ -7,16 +6,29 @@ import {
   Text,
   View,
 } from "react-native";
-import symbolicateStackTrace from "react-native/Libraries/Core/Devtools/symbolicateStackTrace";
+import { useNavigation } from "@react-navigation/native";
 
-const MealItem = ({ title, imageUrl, Duration, Complexity, affordability }) => {
+const MealItem = ({
+  id,
+  title,
+  imageUrl,
+  Duration,
+  Complexity,
+  affordability,
+  onPress,
+}) => {
+  const navigation = useNavigation();
+
+  const selectMealItemHandler = () => {
+    navigation.navigate("MealDetail", { mealId: id });
+  };
   return (
     <View style={styles.mealItem}>
       <Pressable
         android_ripple={{ color: "#ccc" }}
-        style={({ pressed }) => pressed ? styles.buttonPressed : null }
-      
-      >
+        style={({ pressed }) => (pressed ? styles.buttonPressed : null)}
+        onPress={selectMealItemHandler}
+        >
         <View style={styles.innerContainer}>
           <View>
             <Image source={{ uri: imageUrl }} style={styles.image} />
@@ -75,7 +87,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     fontSize: 12,
   },
-  buttonPressed : {
-    opacity : 0.5
-  }
+  buttonPressed: {
+    opacity: 0.5,
+  },
 });

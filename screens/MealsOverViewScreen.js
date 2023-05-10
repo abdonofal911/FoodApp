@@ -1,5 +1,5 @@
 import { useLayoutEffect } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { MEALS, CATEGORIES } from "../data/dummy-data";
 import MealItem from "../Components/MealItem";
 
@@ -27,6 +27,8 @@ const MealsOverViewScreen = ({ route, navigation }) => {
         Duration={itemData.item.duration}
         Complexity={itemData.item.complexity}
         affordability={itemData.item.affordability}
+        id ={itemData.item.id}
+
       />
     );
   };
@@ -39,6 +41,7 @@ const MealsOverViewScreen = ({ route, navigation }) => {
         keyExtractor={(item) => item.id}
       />
     </View>
+    
   );
 };
 
