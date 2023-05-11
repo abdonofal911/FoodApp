@@ -26,7 +26,7 @@ const MealItem = ({
   return (
     <View style={styles.mealItem}>
       <Pressable
-        android_ripple={{ color: '#ccc' }}
+        android_ripple={{ color: "#ccc" }}
         style={({ pressed }) => (pressed ? styles.buttonPressed : null)}
         onPress={selectMealItemHandler}
       >
@@ -44,7 +44,7 @@ const MealItem = ({
       </Pressable>
     </View>
   );
-}
+};
 
 export default MealItem;
 
