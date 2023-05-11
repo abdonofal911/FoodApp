@@ -7,13 +7,14 @@ import {
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import MealDeatails from "./MealDeatails";
 
 const MealItem = ({
   id,
   title,
   imageUrl,
-  Duration,
-  Complexity,
+  duration,
+  complexity,
   affordability,
   onPress,
 }) => {
@@ -34,15 +35,7 @@ const MealItem = ({
             <Image source={{ uri: imageUrl }} style={styles.image} />
             <Text style={styles.title}>{title}</Text>
           </View>
-          <View style={styles.details}>
-            <Text style={styles.detailItem}>Duration : {Duration} min </Text>
-            <Text style={styles.detailItem}>
-              Complexity : {Complexity.toUpperCase()}
-            </Text>
-            <Text style={styles.detailItem}>
-              Affordability : {affordability.toUpperCase()}
-            </Text>
-          </View>
+          <MealDeatails Duration={duration} affordability={affordability} Complexity={complexity} />
         </View>
       </Pressable>
     </View>
