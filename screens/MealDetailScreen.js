@@ -6,47 +6,66 @@ import {
   ScrollView,
   Button,
 } from "react-native";
-import { useLayoutEffect } from "react";
+import { useCallback, useContext, useLayoutEffect } from "react";
 import { MEALS } from "../data/dummy-data";
 import MealDetails from "../Components/MealDetails";
 import Subtitle from "../Components/MealDetail/Subtitle";
 import List from "../Components/MealDetail/List";
 import IconButton from "../Components/iconButton";
+import { FavoritesContext } from "../store/context/favorites-contexxt";
+
 const MealDetailScreen = ({ route, navigation }) => {
+  const favoriteMealCtx = useContext(FavoritesContext);
+
   const mealId = route.params.mealId;
 
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
-  const headerButtonPressHandler = () => {
-    console.log("pressed");
+
+  const mealIsFavorite = favoriteMealCtx.ids.includes(mealId);
+
+  const ChangeFavoriteStatusHandler = () => {
+    if (mealIsFavorite) {
+      favoriteMealCtx.removeFavorite(mealId);
+    } else {
+      favoriteMealCtx.addFavorite(mealId);
+    }
   };
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
         return (
           <IconButton
-            onPress={headerButtonPressHandler}
-            icon="star"
+            onPress={ChangeFavoriteStatusHandler}
+            icon={mealIsFavorite ? "star" : "star-outline"}
             color="white"
           />
         );
       },
     });
-  }, [navigation, headerButtonPressHandler]);
+  }, [navigation, ChangeFavoriteStatusHandler]);
+
   return (
     <ScrollView style={styles.rootContainer}>
       <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
+
       <Text style={styles.title}>{selectedMeal.title}</Text>
+
       <MealDetails
         duration={selectedMeal.duration}
         affordability={selectedMeal.affordability}
         complexity={selectedMeal.complexity}
         textStyle={styles.detailText}
       />
+
       <View style={styles.ListOuterContainer}>
         <View style={styles.ListContainer}>
           <Subtitle>Ingredients</Subtitle>
+
           <List data={selectedMeal.ingredients} />
+
           <Subtitle>Steps</Subtitle>
+
           <List data={selectedMeal.steps} />
         </View>
       </View>
