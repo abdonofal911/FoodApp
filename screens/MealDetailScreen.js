@@ -17,15 +17,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, removeFavorite } from "../store/redux/favorites";
 
 const MealDetailScreen = ({ route, navigation }) => {
-//you  can use favoriteMealCtx instead of favouriteMealIds 
+  //you  can use favoriteMealCtx instead of favouriteMealIds
 
   //  const favoriteMealCtx = useContext(FavoritesContext);
 
   //now using redux
   const favoriteMealIds = useSelector((state) => state.favoriteMeals.ids);
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-const mealId = route.params.mealId;
+  const mealId = route.params.mealId;
 
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
 
@@ -34,10 +34,10 @@ const mealId = route.params.mealId;
   const ChangeFavoriteStatusHandler = () => {
     if (mealIsFavorite) {
       //favoriteMealCtx.removeFavorite(mealId);
-      dispatch(removeFavorite({id:mealId}))
+      dispatch(removeFavorite({ id: mealId }));
     } else {
       //favoriteMealCtx.addFavorite(mealId);
-        dispatch(addFavorite({id:mealId}))
+      dispatch(addFavorite({ id: mealId }));
     }
   };
 

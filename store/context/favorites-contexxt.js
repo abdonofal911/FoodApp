@@ -23,7 +23,11 @@ const FavoritesContextProvider = ({ children }) => {
     addFavorite: addFavorite,
     removeFavorite: removeFavorite,
   };
-  return <FavoritesContext.Provider value={value}>{children}</FavoritesContext.Provider>;
+  return (
+    <FavoritesContext.Provider value={value}>
+      {children}
+    </FavoritesContext.Provider>
+  );
 };
 
 export default FavoritesContextProvider;
